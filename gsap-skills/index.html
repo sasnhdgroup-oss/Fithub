@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fithub — Skills Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#">
+        <span class="nav__logo-icon">⚡</span>
+        <span>Fithub</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Trainers</a></li>
+        <li><a href="#" class="nav__active">Skills</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="btn btn--ghost">Log in</button>
+        <button class="btn btn--primary">Get started</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+    </div>
+    <div class="hero__content">
+      <div class="hero__badge" id="heroBadge">
+        <span class="hero__badge-dot"></span>
+        <span>500+ skills available</span>
+      </div>
+      <h1 class="hero__title" id="heroTitle">
+        <span class="hero__title-line">Unlock Your</span>
+        <span class="hero__title-line hero__title-line--accent">Full Potential</span>
+      </h1>
+      <p class="hero__sub" id="heroSub">
+        Browse expert-led fitness skills — from strength training and yoga to
+        nutrition coaching and mindfulness. Learn at your own pace.
+      </p>
+      <div class="hero__cta" id="heroCta">
+        <button class="btn btn--primary btn--lg">Browse skills</button>
+        <button class="btn btn--outline btn--lg">Meet trainers</button>
+      </div>
+      <div class="hero__stats" id="heroStats">
+        <div class="hero__stat">
+          <strong>12k+</strong>
+          <span>Active learners</span>
+        </div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat">
+          <strong>500+</strong>
+          <span>Skills offered</span>
+        </div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat">
+          <strong>98%</strong>
+          <span>Satisfaction rate</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__visual" id="heroVisual">
+      <div class="hero__card-float hero__card-float--a">
+        <div class="hero__card-float-icon">🏋️</div>
+        <div>
+          <div class="hero__card-float-title">Strength</div>
+          <div class="hero__card-float-sub">128 sessions</div>
+        </div>
+      </div>
+      <div class="hero__card-float hero__card-float--b">
+        <div class="hero__card-float-icon">🧘</div>
+        <div>
+          <div class="hero__card-float-title">Yoga Flow</div>
+          <div class="hero__card-float-sub">94 sessions</div>
+        </div>
+      </div>
+      <div class="hero__card-float hero__card-float--c">
+        <div class="hero__card-float-icon">🔥</div>
+        <div>
+          <div class="hero__card-float-title">HIIT</div>
+          <div class="hero__card-float-sub">211 sessions</div>
+        </div>
+      </div>
+      <div class="hero__phone">
+        <div class="hero__phone-screen">
+          <div class="hero__phone-bar"></div>
+          <div class="hero__phone-avatar"></div>
+          <div class="hero__phone-line"></div>
+          <div class="hero__phone-line hero__phone-line--short"></div>
+          <div class="hero__phone-progress">
+            <div class="hero__phone-progress-fill"></div>
+          </div>
+          <div class="hero__phone-chips">
+            <span class="hero__phone-chip">Strength</span>
+            <span class="hero__phone-chip hero__phone-chip--active">HIIT</span>
+            <span class="hero__phone-chip">Yoga</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section class="filters" id="filtersSection">
+    <div class="container">
+      <div class="filters__header">
+        <h2 class="section-title" id="filterTitle">Skills Marketplace</h2>
+        <div class="filters__search">
+          <input class="filters__input" id="searchInput" type="text" placeholder="Search skills…" />
+          <svg class="filters__search-icon" viewBox="0 0 20 20" fill="none">
+            <circle cx="8.5" cy="8.5" r="5.75" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="filters__tabs" id="filterTabs">
+        <button class="filter-tab filter-tab--active" data-filter="all">All Skills</button>
+        <button class="filter-tab" data-filter="strength">Strength</button>
+        <button class="filter-tab" data-filter="cardio">Cardio</button>
+        <button class="filter-tab" data-filter="yoga">Yoga & Mindfulness</button>
+        <button class="filter-tab" data-filter="nutrition">Nutrition</button>
+        <button class="filter-tab" data-filter="recovery">Recovery</button>
+        <button class="filter-tab" data-filter="sport">Sport-Specific</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS GRID -->
+  <section class="marketplace" id="marketplace">
+    <div class="container">
+      <div class="skills-grid" id="skillsGrid">
+
+        <!-- Strength -->
+        <article class="skill-card" data-category="strength" data-id="1">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--strength"></div>
+            <span class="skill-card__badge">Bestseller</span>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Strength</span>
+              <span class="skill-card__level skill-card__level--beginner">Beginner</span>
+            </div>
+            <h3 class="skill-card__title">Powerlifting Foundations</h3>
+            <p class="skill-card__desc">Master the squat, bench press, and deadlift with perfect form and progressive overload principles.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--1"></div>
+              <div>
+                <div class="skill-card__trainer-name">Marcus Reid</div>
+                <div class="skill-card__trainer-cred">NSCA-CPT · 8 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">4.9</span>
+                <span class="skill-card__rating-count">(312)</span>
+              </div>
+              <div class="skill-card__price">$49<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cardio -->
+        <article class="skill-card" data-category="cardio" data-id="2">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--cardio"></div>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Cardio</span>
+              <span class="skill-card__level skill-card__level--intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-card__title">HIIT Accelerator Program</h3>
+            <p class="skill-card__desc">High-intensity interval training designed to torch calories and boost VO₂ max in 30-minute sessions.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--2"></div>
+              <div>
+                <div class="skill-card__trainer-name">Priya Sharma</div>
+                <div class="skill-card__trainer-cred">ACE-CPT · 6 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">4.8</span>
+                <span class="skill-card__rating-count">(218)</span>
+              </div>
+              <div class="skill-card__price">$39<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Yoga -->
+        <article class="skill-card" data-category="yoga" data-id="3">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--yoga"></div>
+            <span class="skill-card__badge skill-card__badge--new">New</span>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Yoga</span>
+              <span class="skill-card__level skill-card__level--beginner">Beginner</span>
+            </div>
+            <h3 class="skill-card__title">Morning Flow & Mobility</h3>
+            <p class="skill-card__desc">Start each day with guided vinyasa flows that improve flexibility, posture, and mental clarity.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--3"></div>
+              <div>
+                <div class="skill-card__trainer-name">Elena Voss</div>
+                <div class="skill-card__trainer-cred">RYT-500 · 11 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">5.0</span>
+                <span class="skill-card__rating-count">(87)</span>
+              </div>
+              <div class="skill-card__price">$29<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Nutrition -->
+        <article class="skill-card" data-category="nutrition" data-id="4">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--nutrition"></div>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Nutrition</span>
+              <span class="skill-card__level skill-card__level--all">All Levels</span>
+            </div>
+            <h3 class="skill-card__title">Performance Nutrition Blueprint</h3>
+            <p class="skill-card__desc">Evidence-based meal planning, macro tracking, and fuelling strategies for athletes and weekend warriors.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--4"></div>
+              <div>
+                <div class="skill-card__trainer-name">James Okafor</div>
+                <div class="skill-card__trainer-cred">RD, CSSD · 9 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★☆</span>
+                <span class="skill-card__rating-val">4.7</span>
+                <span class="skill-card__rating-count">(154)</span>
+              </div>
+              <div class="skill-card__price">$59<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Recovery -->
+        <article class="skill-card" data-category="recovery" data-id="5">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--recovery"></div>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Recovery</span>
+              <span class="skill-card__level skill-card__level--all">All Levels</span>
+            </div>
+            <h3 class="skill-card__title">Deep Recovery & Sleep</h3>
+            <p class="skill-card__desc">Foam rolling protocols, breathwork, and sleep optimisation to maximise your body's repair cycle.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--5"></div>
+              <div>
+                <div class="skill-card__trainer-name">Sofia Mendes</div>
+                <div class="skill-card__trainer-cred">CSCS · 7 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">4.9</span>
+                <span class="skill-card__rating-count">(203)</span>
+              </div>
+              <div class="skill-card__price">$35<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sport-Specific -->
+        <article class="skill-card" data-category="sport" data-id="6">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--sport"></div>
+            <span class="skill-card__badge">Popular</span>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Sport</span>
+              <span class="skill-card__level skill-card__level--advanced">Advanced</span>
+            </div>
+            <h3 class="skill-card__title">Explosive Athleticism</h3>
+            <p class="skill-card__desc">Plyometrics, agility ladder work, and sport-specific conditioning drills for competitive athletes.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--6"></div>
+              <div>
+                <div class="skill-card__trainer-name">Dani Brooks</div>
+                <div class="skill-card__trainer-cred">USAW · 12 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">4.8</span>
+                <span class="skill-card__rating-count">(176)</span>
+              </div>
+              <div class="skill-card__price">$69<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Strength 2 -->
+        <article class="skill-card" data-category="strength" data-id="7">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--calisthenics"></div>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Strength</span>
+              <span class="skill-card__level skill-card__level--intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-card__title">Calisthenics Mastery</h3>
+            <p class="skill-card__desc">Bodyweight progressions from pull-ups to handstands — build elite relative strength anywhere.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--7"></div>
+              <div>
+                <div class="skill-card__trainer-name">Kai Nakamura</div>
+                <div class="skill-card__trainer-cred">NASM-CPT · 5 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">4.9</span>
+                <span class="skill-card__rating-count">(261)</span>
+              </div>
+              <div class="skill-card__price">$44<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Yoga 2 -->
+        <article class="skill-card" data-category="yoga" data-id="8">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--meditation"></div>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Mindfulness</span>
+              <span class="skill-card__level skill-card__level--beginner">Beginner</span>
+            </div>
+            <h3 class="skill-card__title">Meditation for Athletes</h3>
+            <p class="skill-card__desc">Build mental resilience, focus under pressure, and accelerate recovery through mindfulness practice.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--8"></div>
+              <div>
+                <div class="skill-card__trainer-name">Aisha Brennan</div>
+                <div class="skill-card__trainer-cred">MBSR · 10 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">4.9</span>
+                <span class="skill-card__rating-count">(142)</span>
+              </div>
+              <div class="skill-card__price">$25<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Cardio 2 -->
+        <article class="skill-card" data-category="cardio" data-id="9">
+          <div class="skill-card__media">
+            <div class="skill-card__thumb skill-card__thumb--running"></div>
+            <span class="skill-card__badge skill-card__badge--new">New</span>
+            <button class="skill-card__wishlist" aria-label="Save">♡</button>
+          </div>
+          <div class="skill-card__body">
+            <div class="skill-card__meta">
+              <span class="skill-card__cat">Cardio</span>
+              <span class="skill-card__level skill-card__level--intermediate">Intermediate</span>
+            </div>
+            <h3 class="skill-card__title">Marathon Training Plan</h3>
+            <p class="skill-card__desc">16-week structured plan covering base building, threshold runs, and race-day strategy for 26.2 miles.</p>
+            <div class="skill-card__trainer">
+              <div class="skill-card__avatar skill-card__avatar--9"></div>
+              <div>
+                <div class="skill-card__trainer-name">Tom Vickers</div>
+                <div class="skill-card__trainer-cred">USATF-L2 · 14 yrs</div>
+              </div>
+            </div>
+            <div class="skill-card__footer">
+              <div class="skill-card__rating">
+                <span class="skill-card__stars">★★★★★</span>
+                <span class="skill-card__rating-val">5.0</span>
+                <span class="skill-card__rating-count">(98)</span>
+              </div>
+              <div class="skill-card__price">$55<span>/mo</span></div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="no-results" id="noResults" style="display:none">
+        <div class="no-results__icon">🔍</div>
+        <h3>No skills found</h3>
+        <p>Try a different search or filter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED TRAINERS -->
+  <section class="trainers" id="trainersSection">
+    <div class="container">
+      <div class="section-header" id="trainersHeader">
+        <h2 class="section-title">Featured Trainers</h2>
+        <p class="section-sub">World-class coaches ready to guide your journey.</p>
+      </div>
+      <div class="trainers-row" id="trainersRow">
+        <div class="trainer-pill">
+          <div class="trainer-pill__avatar trainer-pill__avatar--1"></div>
+          <div class="trainer-pill__info">
+            <div class="trainer-pill__name">Marcus Reid</div>
+            <div class="trainer-pill__spec">Powerlifting</div>
+          </div>
+          <div class="trainer-pill__tag">⭐ 4.9</div>
+        </div>
+        <div class="trainer-pill">
+          <div class="trainer-pill__avatar trainer-pill__avatar--2"></div>
+          <div class="trainer-pill__info">
+            <div class="trainer-pill__name">Priya Sharma</div>
+            <div class="trainer-pill__spec">HIIT / Cardio</div>
+          </div>
+          <div class="trainer-pill__tag">⭐ 4.8</div>
+        </div>
+        <div class="trainer-pill">
+          <div class="trainer-pill__avatar trainer-pill__avatar--3"></div>
+          <div class="trainer-pill__info">
+            <div class="trainer-pill__name">Elena Voss</div>
+            <div class="trainer-pill__spec">Yoga & Flow</div>
+          </div>
+          <div class="trainer-pill__tag">⭐ 5.0</div>
+        </div>
+        <div class="trainer-pill">
+          <div class="trainer-pill__avatar trainer-pill__avatar--4"></div>
+          <div class="trainer-pill__info">
+            <div class="trainer-pill__name">James Okafor</div>
+            <div class="trainer-pill__spec">Nutrition</div>
+          </div>
+          <div class="trainer-pill__tag">⭐ 4.7</div>
+        </div>
+        <div class="trainer-pill">
+          <div class="trainer-pill__avatar trainer-pill__avatar--5"></div>
+          <div class="trainer-pill__info">
+            <div class="trainer-pill__name">Sofia Mendes</div>
+            <div class="trainer-pill__spec">Recovery</div>
+          </div>
+          <div class="trainer-pill__tag">⭐ 4.9</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="ctaBanner">
+    <div class="cta-banner__bg">
+      <div class="cta-banner__orb cta-banner__orb--1"></div>
+      <div class="cta-banner__orb cta-banner__orb--2"></div>
+    </div>
+    <div class="cta-banner__content" id="ctaContent">
+      <h2 class="cta-banner__title">Ready to level up?</h2>
+      <p class="cta-banner__sub">Join thousands of athletes training smarter on Fithub. Start free for 7 days.</p>
+      <button class="btn btn--white btn--lg">Start free trial</button>
+    </div>
+  </section>
+
+  <!-- SKILL DETAIL MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal__media">
+        <div class="modal__thumb" id="modalThumb"></div>
+      </div>
+      <div class="modal__body">
+        <div class="modal__meta" id="modalMeta"></div>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__desc" id="modalDesc"></p>
+        <div class="modal__trainer" id="modalTrainer"></div>
+        <div class="modal__includes">
+          <h4>What's included</h4>
+          <ul class="modal__list" id="modalList"></ul>
+        </div>
+        <div class="modal__actions">
+          <div class="modal__price" id="modalPrice"></div>
+          <button class="btn btn--primary btn--lg">Enrol now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
