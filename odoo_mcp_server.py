@@ -4,25 +4,47 @@
 import xmlrpc.client
 import json
 import os
+import ssl
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import Tool, TextContent
 
-ODOO_URL = os.getenv("ODOO_URL", "http://localhost:8069")
-ODOO_DB  = os.getenv("ODOO_DB",  "o2maroc")
-ODOO_USER = os.getenv("ODOO_USER", "admin")
-ODOO_PASS = os.getenv("ODOO_PASS", "admin")
+ODOO_URL  = os.getenv("ODOO_URL",      "https://www.o2maroc.com")
+ODOO_DB   = os.getenv("ODOO_DB",       "o2maroc")
+ODOO_USER = os.getenv("ODOO_USER",     "admin")
+ODOO_PASS = os.getenv("ODOO_PASSWORD", os.getenv("ODOO_PASS", "admin"))
+# ODOO_YOLO=true skips SSL verification (useful for self-signed certs)
+ODOO_YOLO = os.getenv("ODOO_YOLO", "").lower() in ("1", "true", "yes")
 
 server = Server("odoo-o2maroc")
 
 # ── helpers ────────────────────────────────────────────────────────────────
 
+def _ssl_context():
+    if ODOO_YOLO:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        return ctx
+    ca = os.getenv("SSL_CERT_FILE") or os.getenv("REQUESTS_CA_BUNDLE")
+    if ca:
+        ctx = ssl.create_default_context(cafile=ca)
+        return ctx
+    return None
+
+def _proxy(path):
+    url = f"{ODOO_URL}{path}"
+    ctx = _ssl_context()
+    if ctx:
+        return xmlrpc.client.ServerProxy(url, context=ctx)
+    return xmlrpc.client.ServerProxy(url)
+
 def _connect():
-    common = xmlrpc.client.ServerProxy(f"{ODOO_URL}/xmlrpc/2/common")
+    common = _proxy("/xmlrpc/2/common")
     uid    = common.authenticate(ODOO_DB, ODOO_USER, ODOO_PASS, {})
     if not uid:
-        raise RuntimeError("Odoo authentication failed. Check ODOO_URL / ODOO_DB / ODOO_USER / ODOO_PASS.")
-    models = xmlrpc.client.ServerProxy(f"{ODOO_URL}/xmlrpc/2/object")
+        raise RuntimeError("Odoo authentication failed. Check ODOO_URL / ODOO_DB / ODOO_USER / ODOO_PASSWORD.")
+    models = _proxy("/xmlrpc/2/object")
     return uid, models
 
 def _exec(model, method, *args, **kw):
