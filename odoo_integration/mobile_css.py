@@ -146,7 +146,7 @@ MOBILE_CSS = """
             '<a href="#o2-devis,#contact,#wrapwrap form" class="o2-cta-devis" ' +
             'onclick="var f=document.querySelector(\'form,#o2-devis,[data-snippet=s_website_form]\');' +
             'if(f){f.scrollIntoView({behavior:\'smooth\'});return false;}">📋 Demander un devis</a>' +
-            '<a href="tel:+212XXXXXXXXX" class="o2-cta-tel">📞 Appeler</a>';
+            '<a href="tel:+212631311322" class="o2-cta-tel">📞 Appeler</a>';
           document.body.appendChild(bar);
         }
       });

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aperçu Mobile — O2 Maroc</title>
+<style>
+  /* ---- Wrapper desktop centré simulant un téléphone ---- */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #e8e8e8; font-family: 'Segoe UI', Arial, sans-serif; }
+
+  .phone-frame {
+    width: 390px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    overflow: hidden;
+    border: 10px solid #1a1a1a;
+    position: relative;
+  }
+  .phone-notch {
+    background: #1a1a1a;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .phone-notch span {
+    width: 80px; height: 10px;
+    background: #333;
+    border-radius: 10px;
+  }
+  .phone-screen {
+    height: 780px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    background: #f5f5f5;
+    padding-bottom: 72px;
+  }
+  .phone-screen::-webkit-scrollbar { width: 3px; }
+  .phone-screen::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+  /* ======= NAVBAR ======= */
+  .navbar {
+    background: #fff;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .navbar .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #e8491e;
+    letter-spacing: -0.5px;
+  }
+  .navbar .logo span { color: #333; }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .hamburger span {
+    width: 22px; height: 2px;
+    background: #333;
+    border-radius: 2px;
+  }
+
+  /* ======= HERO ======= */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    min-height: 62vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 32px 20px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(232,73,30,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-badge {
+    background: rgba(232,73,30,0.15);
+    border: 1px solid rgba(232,73,30,0.4);
+    color: #ff6b3d;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .hero h1 span { color: #e8491e; }
+  .hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 300px;
+  }
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 280px;
+  }
+  .btn-primary {
+    background: #e8491e;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(232,73,30,0.40);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    padding: 13px 20px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .hero-trust {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  .trust-item {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+  }
+  .trust-item strong {
+    display: block;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .trust-item span { font-size: 0.72rem; }
+
+  /* ======= DEVIS FORM ======= */
+  .form-section {
+    padding: 28px 16px 20px;
+    background: #f5f5f5;
+  }
+  .form-section h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 6px;
+  }
+  .form-section .subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .form-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  }
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 9px;
+    font-size: 1rem;
+    color: #333;
+    background: #fafafa;
+    min-height: 48px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #e8491e;
+    outline: none;
+    background: #fff;
+  }
+  .form-group textarea {
+    min-height: 80px;
+    resize: none;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .btn-submit {
+    width: 100%;
+    background: #e8491e;
+    color: #fff;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 6px;
+    box-shadow: 0 6px 18px rgba(232,73,30,0.35);
+    min-height: 52px;
+    letter-spacing: 0.3px;
+  }
+  .form-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #999;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  /* ======= SERVICES ======= */
+  .services-section {
+    padding: 28px 16px 20px;
+    background: #fff;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #e8491e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .services-section h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  .service-card {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-left: 4px solid #e8491e;
+  }
+  .service-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .service-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 3px;
+  }
+  .service-card p {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.4;
+  }
+  .service-card .service-price {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #e8491e;
+  }
+
+  /* ======= SOCIAL PROOF ======= */
+  .reviews-section {
+    padding: 24px 16px 20px;
+    background: #f5f5f5;
+  }
+  .reviews-section h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+  }
+  .review-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .stars { color: #f5a623; font-size: 0.85rem; margin-bottom: 8px; }
+  .review-text {
+    font-size: 0.88rem;
+    color: #444;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .reviewer {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .reviewer-avatar {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8491e, #ff6b3d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  /* ======= STICKY CTA BAR ======= */
+  .sticky-cta {
+    position: sticky;
+    bottom: 0;
+    left: 0; right: 0;
+    background: #fff;
+    padding: 10px 16px;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+  }
+  .sticky-cta a {
+    flex: 1;
+    text-align: center;
+    padding: 13px 8px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cta-devis {
+    background: #e8491e;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(232,73,30,0.35);
+  }
+  .cta-tel {
+    background: #f0f0f0;
+    color: #333 !important;
+    border: 1.5px solid #ddd;
+  }
+
+  /* ======= LABEL AVANT/APRÈS ======= */
+  .preview-label {
+    text-align: center;
+    padding: 12px;
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .preview-label span { color: #e8491e; }
+
+  /* ======= Layout desktop comparaison ======= */
+  .comparison {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .comparison h1 {
+    text-align: center;
+    color: #1a1a2e;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+  .comparison p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+  }
+  .phones-row {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .phone-wrapper { text-align: center; }
+  .phone-wrapper h3 {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .phone-wrapper h3.before { color: #999; }
+  .phone-wrapper h3.after { color: #e8491e; }
+
+  /* ======= BEFORE (version actuelle simulée) ======= */
+  .screen-before {
+    height: 780px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    padding-bottom: 20px;
+  }
+  .before-nav {
+    background: #fff;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  .before-logo { font-size: 1.1rem; font-weight: 700; color: #333; }
+  .before-hero {
+    background: #f0f0f0;
+    padding: 20px 12px;
+    text-align: left;
+  }
+  .before-hero h1 {
+    font-size: 1.1rem;
+    color: #222;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .before-hero p { font-size: 0.85rem; color: #666; margin-bottom: 14px; }
+  .before-btn {
+    background: #e8491e;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 0.82rem;
+    display: inline-block;
+  }
+  .before-form {
+    padding: 16px 12px;
+    background: #fff;
+  }
+  .before-form h2 { font-size: 1rem; color: #333; margin-bottom: 12px; }
+  .before-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    margin-bottom: 8px;
+    height: 36px;
+  }
+  .before-submit {
+    width: 100%;
+    background: #e8491e;
+    color: #fff;
+    border: none;
+    padding: 9px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  .before-section {
+    padding: 14px 12px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .before-section h3 { font-size: 0.9rem; color: #333; margin-bottom: 8px; }
+  .before-card {
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    color: #555;
+  }
+  .before-card strong { display: block; color: #333; margin-bottom: 3px; font-size: 0.85rem; }
+  .issue-tag {
+    display: inline-block;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+
+  /* Annotations */
+  .annotation {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #fffbeb;
+    border-left: 3px solid #f59e0b;
+    padding: 8px 12px;
+    margin: 0 12px 10px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.75rem;
+    color: #92400e;
+  }
+
+  .improvement-tag {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="comparison">
+  <h1>Aperçu Mobile — O2 Maroc</h1>
+  <p>Comparaison <strong>avant</strong> / <strong>après</strong> les améliorations mobile</p>
+
+  <div class="phones-row">
+
+    <!-- ===== AVANT ===== -->
+    <div class="phone-wrapper">
+      <h3 class="before">Avant — Version actuelle</h3>
+      <div class="phone-frame">
+        <div class="phone-notch"><span></span></div>
+        <div class="preview-label">Version actuelle <span>— problèmes identifiés</span></div>
+        <div class="screen-before">
+
+          <div class="before-nav">
+            <div class="before-logo">O2 Maroc</div>
+            <div style="font-size:1.2rem">☰</div>
+          </div>
+
+          <div class="before-hero">
+            <div class="issue-tag">⚠ Texte trop petit</div>
+            <h1>Services de ménage à domicile à Casablanca</h1>
+            <p>Nous proposons des services de nettoyage professionnel pour votre maison...</p>
+            <div class="before-btn">Demander un devis</div>
+          </div>
+
+          <div class="annotation">
+            ⚠ Bouton CTA trop petit, pas assez visible, difficile à tapper
+          </div>
+
+          <div class="before-form">
+            <div class="issue-tag">⚠ Formulaire mal dimensionné</div>
+            <h2>Demande de devis</h2>
+            <input class="before-input" placeholder="Votre nom" />
+            <input class="before-input" placeholder="Téléphone" />
+            <input class="before-input" placeholder="Adresse" />
+            <input class="before-input" placeholder="Type de service" />
+            <button class="before-submit">Envoyer</button>
+          </div>
+
+          <div class="annotation">
+            ⚠ Champs trop petits (36px), bouton submit peu visible
+          </div>
+
+          <div class="before-section">
+            <div class="issue-tag">⚠ Cards non optimisées</div>
+            <h3>Nos services</h3>
+            <div class="before-card">
+              <strong>🧹 Ménage standard</strong>
+              Nettoyage complet de votre domicile par nos équipes professionnelles
+            </div>
+            <div class="before-card">
+              <strong>✨ Grand ménage</strong>
+              Nettoyage approfondi, idéal après travaux ou emménagement
+            </div>
+            <div class="before-card">
+              <strong>👶 Garde d'enfants</strong>
+              Service de garde à domicile avec personnel qualifié
+            </div>
+          </div>
+
+          <div class="annotation">
+            ⚠ Pas de sticky CTA — prospect quitte la page sans convertir
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== APRÈS ===== -->
+    <div class="phone-wrapper">
+      <h3 class="after">Après — Version optimisée</h3>
+      <div class="phone-frame">
+        <div class="phone-notch"><span></span></div>
+        <div class="preview-label" style="background:#e8491e">Version optimisée <span style="color:#fff">✓ Mobile boost actif</span></div>
+        <div class="phone-screen">
+
+          <!-- Navbar -->
+          <div class="navbar">
+            <div class="logo">O2<span>Maroc</span></div>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+          </div>
+
+          <!-- Hero -->
+          <div class="hero">
+            <div class="hero-badge">✓ Service certifié Casablanca</div>
+            <h1>Ménage à domicile <span>professionnel</span> à Casablanca</h1>
+            <p>Équipes formées, matériel fourni, résultats garantis. Devis gratuit en 2 minutes.</p>
+            <div class="hero-cta">
+              <a href="#" class="btn-primary">📋 Demander un devis gratuit</a>
+              <a href="tel:+212631311322" class="btn-secondary">📞 +212 6 31 31 13 22</a>
+            </div>
+            <div class="hero-trust">
+              <div class="trust-item"><strong>500+</strong><span>clients</span></div>
+              <div class="trust-item"><strong>4.9★</strong><span>avis Google</span></div>
+              <div class="trust-item"><strong>2h</strong><span>réponse</span></div>
+            </div>
+          </div>
+
+          <!-- Form Section -->
+          <div class="form-section" id="devis">
+            <div class="improvement-tag">✓ Formulaire optimisé mobile</div>
+            <h2>Votre devis gratuit</h2>
+            <p class="subtitle">Remplissez ce formulaire, nous vous rappelons dans les 2h.</p>
+            <div class="form-card">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Prénom</label>
+                  <input type="text" placeholder="Mohammed" />
+                </div>
+                <div class="form-group">
+                  <label>Téléphone</label>
+                  <input type="tel" placeholder="06 XX XX XX XX" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Quartier / Ville</label>
+                <input type="text" placeholder="Ex : Belvédère, Casablanca" />
+              </div>
+              <div class="form-group">
+                <label>Type de service</label>
+                <select>
+                  <option>Ménage standard</option>
+                  <option>Grand ménage</option>
+                  <option>Garde d'enfants</option>
+                  <option>Repassage</option>
+                  <option>Autre service</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Message (optionnel)</label>
+                <textarea placeholder="Superficie, fréquence, demande spéciale..."></textarea>
+              </div>
+              <button class="btn-submit">🚀 Recevoir mon devis gratuit</button>
+              <div class="form-note">🔒 Vos données sont confidentielles · Réponse sous 2h</div>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="services-section">
+            <div class="section-label">Nos prestations</div>
+            <div class="improvement-tag">✓ Cards touch-friendly</div>
+            <h2>Services à domicile</h2>
+            <div class="service-card">
+              <div class="service-icon">🧹</div>
+              <div>
+                <h3>Ménage standard</h3>
+                <p>Nettoyage complet par équipes professionnelles formées</p>
+                <div class="service-price">À partir de 150 DH</div>
+              </div>
+            </div>
+            <div class="service-card">
+              <div class="service-icon">✨</div>
+              <div>
+                <h3>Grand ménage</h3>
+                <p>Nettoyage approfondi — après travaux ou emménagement</p>
+                <div class="service-price">À partir de 300 DH</div>
+              </div>
+            </div>
+            <div class="service-card">
+              <div class="service-icon">👶</div>
+              <div>
+                <h3>Garde d'enfants</h3>
+                <p>Personnel qualifié et vérifié, à votre domicile</p>
+                <div class="service-price">Sur devis</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews -->
+          <div class="reviews-section">
+            <div class="improvement-tag">✓ Social proof ajouté</div>
+            <h2>⭐ Ce que disent nos clients</h2>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p class="review-text">"Service impeccable, l'équipe est ponctuelle et très professionnelle. Je recommande O2 Maroc à tous mes amis."</p>
+              <div class="reviewer">
+                <div class="reviewer-avatar">FZ</div>
+                Fatima Z. — Belvédère, Casablanca
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p class="review-text">"Devis reçu en 1h, intervention le lendemain. Résultat parfait pour mon grand ménage."</p>
+              <div class="reviewer">
+                <div class="reviewer-avatar">KA</div>
+                Karim A. — Dar Bouazza
+              </div>
+            </div>
+          </div>
+
+          <!-- Sticky CTA -->
+          <div class="sticky-cta">
+            <a href="#devis" class="cta-devis">📋 Devis gratuit</a>
+            <a href="tel:+212631311322" class="cta-tel">📞 Appeler</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Légende des améliorations -->
+  <div style="max-width:820px;margin:30px auto;background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.08)">
+    <h2 style="font-size:1.1rem;color:#1a1a2e;margin-bottom:16px">Améliorations appliquées</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:#dcfce7;border-radius:8px;padding:12px;font-size:0.85rem;color:#166534">
+        <strong>✓ Sticky CTA bar</strong><br>Boutons "Devis" + "Appeler" toujours visibles
+      </div>
+      <div style="background:#dcfce7;border-radius:8px;padding:12px;font-size:0.85rem;color:#166534">
+        <strong>✓ Formulaire optimisé</strong><br>Champs 48px, bouton submit proéminent
+      </div>
+      <div style="background:#dcfce7;border-radius:8px;padding:12px;font-size:0.85rem;color:#166534">
+        <strong>✓ Hero mobile first</strong><br>60vh, CTA double, indicateurs de confiance
+      </div>
+      <div style="background:#dcfce7;border-radius:8px;padding:12px;font-size:0.85rem;color:#166534">
+        <strong>✓ Touch targets 48px+</strong><br>Tous les boutons faciles à tapper
+      </div>
+      <div style="background:#dcfce7;border-radius:8px;padding:12px;font-size:0.85rem;color:#166534">
+        <strong>✓ Social proof</strong><br>Avis clients visibles pour rassurer
+      </div>
+      <div style="background:#dcfce7;border-radius:8px;padding:12px;font-size:0.85rem;color:#166534">
+        <strong>✓ Typographie 16px+</strong><br>Lisible sans zoom sur mobile
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:#fff7ed;border-radius:8px;border-left:4px solid #e8491e;font-size:0.85rem;color:#9a3412">
+      <strong>Pour appliquer :</strong> <code>python3 apply_mobile_boost.py</code> depuis votre Mac (branche <code>claude/odoo-list-recent-pages-jvbDq</code>)
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
