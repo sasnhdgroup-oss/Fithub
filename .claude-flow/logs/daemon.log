@@ -1,0 +1,63 @@
+2026-05-13T08:00:01Z INFO  wkr-sync-001       Worker cycle started
+2026-05-13T08:00:01Z INFO  wkr-sync-001       Workout Sync: fetched 87 records in 298ms
+2026-05-13T08:00:01Z INFO  wkr-sync-001       Workout Sync: completed successfully — 23 items processed
+2026-05-13T08:00:02Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:00:02Z INFO  wkr-notif-002      Notification Dispatcher: fetched 14 records in 76ms
+2026-05-13T08:00:02Z INFO  wkr-notif-002      Notification Dispatcher: completed successfully — 14 items processed
+2026-05-13T08:00:05Z DEBUG wkr-sync-001       wkr-sync-001: heartbeat OK, memory 34MB
+2026-05-13T08:00:10Z INFO  wkr-media-004      Worker cycle started
+2026-05-13T08:00:10Z INFO  wkr-media-004      Media Processor: fetched 3 records in 1200ms
+2026-05-13T08:00:10Z INFO  wkr-media-004      Media Processor: completed successfully — 3 items processed
+2026-05-13T08:00:12Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:00:12Z INFO  wkr-notif-002      Notification Dispatcher: fetched 9 records in 91ms
+2026-05-13T08:00:12Z INFO  wkr-notif-002      Notification Dispatcher: completed successfully — 9 items processed
+2026-05-13T08:00:22Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:00:22Z INFO  wkr-notif-002      Notification Dispatcher: fetched 21 records in 83ms
+2026-05-13T08:00:25Z INFO  wkr-media-004      Media Processor: fetched 1 records in 1500ms
+2026-05-13T08:00:25Z INFO  wkr-media-004      Media Processor: completed successfully — 1 items processed
+2026-05-13T08:00:30Z INFO  wkr-sync-001       Worker cycle started
+2026-05-13T08:00:30Z INFO  wkr-sync-001       Workout Sync: fetched 42 records in 312ms
+2026-05-13T08:00:30Z INFO  wkr-sync-001       Workout Sync: completed successfully — 11 items processed
+2026-05-13T08:00:32Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:00:32Z WARN  wkr-notif-002      Notification Dispatcher: queue depth 347 — consider scaling
+2026-05-13T08:00:35Z WARN  wkr-billing-005    Billing Reconciler: retry attempt 1/3 after transient error
+2026-05-13T08:00:40Z INFO  wkr-media-004      Worker cycle started
+2026-05-13T08:00:40Z INFO  wkr-media-004      Media Processor: fetched 5 records in 1400ms
+2026-05-13T08:00:40Z INFO  wkr-media-004      Media Processor: completed successfully — 5 items processed
+2026-05-13T08:00:42Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:00:42Z DEBUG wkr-analytics-003  wkr-analytics-003: heartbeat OK, memory 62MB
+2026-05-13T08:00:48Z WARN  wkr-billing-005    Billing Reconciler: retry attempt 2/3 after transient error
+2026-05-13T08:00:52Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:00:55Z INFO  wkr-media-004      Worker cycle started
+2026-05-13T08:00:55Z ERROR wkr-billing-005    Billing Reconciler: upstream timeout after 30000ms — circuit open
+2026-05-13T08:01:00Z INFO  wkr-sync-001       Worker cycle started
+2026-05-13T08:01:00Z INFO  wkr-sync-001       Workout Sync: completed successfully — 7 items processed
+2026-05-13T08:01:02Z INFO  wkr-notif-002      Notification Dispatcher: completed successfully — 18 items processed
+2026-05-13T08:01:05Z INFO  wkr-media-004      Media Processor: completed successfully — 2 items processed
+2026-05-13T08:01:10Z DEBUG wkr-search-006     wkr-search-006: heartbeat OK, memory 28MB
+2026-05-13T08:01:12Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:01:15Z INFO  wkr-analytics-003  Worker cycle started
+2026-05-13T08:01:15Z INFO  wkr-analytics-003  Analytics Aggregator: fetched 158 records in 1900ms
+2026-05-13T08:01:15Z INFO  wkr-analytics-003  Analytics Aggregator: completed successfully — 41 items processed
+2026-05-13T08:01:20Z INFO  wkr-media-004      Worker cycle started
+2026-05-13T08:01:20Z INFO  wkr-media-004      Media Processor: cache warm, 94% hit-rate
+2026-05-13T08:01:22Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:01:25Z INFO  wkr-search-006     Worker cycle started
+2026-05-13T08:01:25Z INFO  wkr-search-006     Search Indexer: fetched 33 records in 598ms
+2026-05-13T08:01:25Z INFO  wkr-search-006     Search Indexer: completed successfully — 12 items processed
+2026-05-13T08:01:30Z INFO  wkr-sync-001       Worker cycle started
+2026-05-13T08:01:30Z INFO  wkr-sync-001       Workout Sync: completed successfully — 19 items processed
+2026-05-13T08:01:32Z INFO  wkr-notif-002      Notification Dispatcher: completed successfully — 6 items processed
+2026-05-13T08:01:35Z INFO  wkr-media-004      Worker cycle started
+2026-05-13T08:01:35Z WARN  wkr-media-004      Media Processor: avg latency 1050ms (p95 threshold: 1000ms)
+2026-05-13T08:01:42Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:01:45Z INFO  wkr-session-007    Worker cycle started
+2026-05-13T08:01:45Z INFO  wkr-session-007    Session Cleaner: completed successfully — 48 items processed
+2026-05-13T08:01:50Z INFO  wkr-media-004      Media Processor: completed successfully — 1 items processed
+2026-05-13T08:01:52Z INFO  wkr-notif-002      Worker cycle started
+2026-05-13T08:01:55Z DEBUG wkr-sync-001       wkr-sync-001: heartbeat OK, memory 38MB
+2026-05-13T08:02:00Z INFO  wkr-sync-001       Worker cycle started
+2026-05-13T08:02:00Z INFO  wkr-sync-001       Workout Sync: completed successfully — 8 items processed
+2026-05-13T08:02:02Z INFO  wkr-notif-002      Notification Dispatcher: cache warm, 97% hit-rate
+2026-05-13T08:02:05Z INFO  wkr-media-004      Worker cycle started
+2026-05-13T08:02:05Z INFO  wkr-media-004      Media Processor: completed successfully — 4 items processed

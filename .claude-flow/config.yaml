@@ -1,0 +1,38 @@
+daemon:
+  log_file: .claude-flow/logs/daemon.log
+  log_level: INFO
+  pid_file: .claude-flow/daemon.pid
+
+workers:
+  - id: wkr-sync-001
+    name: Workout Sync
+    interval: 30s
+    enabled: true
+  - id: wkr-notif-002
+    name: Notification Dispatcher
+    interval: 10s
+    enabled: true
+  - id: wkr-analytics-003
+    name: Analytics Aggregator
+    interval: 5m
+    enabled: true
+  - id: wkr-media-004
+    name: Media Processor
+    interval: 15s
+    enabled: true
+  - id: wkr-billing-005
+    name: Billing Reconciler
+    interval: 1h
+    enabled: true
+  - id: wkr-search-006
+    name: Search Indexer
+    interval: 2m
+    enabled: true
+  - id: wkr-session-007
+    name: Session Cleaner
+    interval: 10m
+    enabled: true
+  - id: wkr-leaderboard-008
+    name: Leaderboard Engine
+    interval: 3m
+    enabled: false

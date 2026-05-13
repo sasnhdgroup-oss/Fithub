@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fithub — Daemon Status</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" class="nav">
+    <div class="nav__inner">
+      <a href="../gsap-skills/index.html" class="nav__logo">
+        <span class="nav__logo-icon">⚡</span>
+        <span>Fithub</span>
+      </a>
+      <div class="nav__center">
+        <span class="nav__title">Daemon Status Monitor</span>
+      </div>
+      <div class="nav__actions">
+        <button id="refreshBtn" class="btn btn--sm btn--outline" title="Refresh now">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Refresh
+        </button>
+        <div id="autoRefreshToggle" class="toggle-wrap">
+          <span class="toggle-label">Auto</span>
+          <button id="autoToggle" class="toggle toggle--on" aria-label="Auto-refresh on">
+            <span class="toggle__knob"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER SUMMARY -->
+  <header class="page-header">
+    <div class="page-header__bg">
+      <div class="page-header__orb page-header__orb--a"></div>
+      <div class="page-header__orb page-header__orb--b"></div>
+    </div>
+    <div class="container">
+      <div id="headerContent" class="page-header__content">
+        <div class="status-badge" id="globalBadge">
+          <span class="status-badge__dot"></span>
+          <span id="globalBadgeText">All systems operational</span>
+        </div>
+        <h1 class="page-header__title">Daemon Monitor</h1>
+        <p class="page-header__sub">Real-time worker health — last-run times, success rates &amp; live logs</p>
+        <div class="summary-row" id="summaryRow">
+          <div class="summary-card">
+            <span class="summary-card__val" id="summWorkers">0</span>
+            <span class="summary-card__label">Workers</span>
+          </div>
+          <div class="summary-card summary-card--sep"></div>
+          <div class="summary-card">
+            <span class="summary-card__val summary-card__val--green" id="summRunning">0</span>
+            <span class="summary-card__label">Running</span>
+          </div>
+          <div class="summary-card summary-card--sep"></div>
+          <div class="summary-card">
+            <span class="summary-card__val summary-card__val--red" id="summFailed">0</span>
+            <span class="summary-card__label">Failed</span>
+          </div>
+          <div class="summary-card summary-card--sep"></div>
+          <div class="summary-card">
+            <span class="summary-card__val" id="summAvgRate">0%</span>
+            <span class="summary-card__label">Avg success</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main container">
+
+    <!-- WORKER GRID -->
+    <section class="section" id="workersSection">
+      <div class="section__header">
+        <h2 class="section__title">Workers</h2>
+        <div class="section__filters">
+          <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="running">Running</button>
+          <button class="filter-btn" data-filter="idle">Idle</button>
+          <button class="filter-btn" data-filter="error">Error</button>
+        </div>
+      </div>
+
+      <div class="workers-grid" id="workersGrid">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- LOG VIEWER -->
+    <section class="section" id="logSection">
+      <div class="section__header">
+        <h2 class="section__title">Live Log</h2>
+        <div class="log-controls">
+          <div class="log-filter-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="logFilter" type="text" class="log-filter-input" placeholder="Filter logs…" />
+          </div>
+          <div class="log-level-btns">
+            <button class="level-btn level-btn--active" data-level="all">ALL</button>
+            <button class="level-btn level-btn--info" data-level="INFO">INFO</button>
+            <button class="level-btn level-btn--warn" data-level="WARN">WARN</button>
+            <button class="level-btn level-btn--error" data-level="ERROR">ERROR</button>
+          </div>
+          <button id="clearLogBtn" class="btn btn--sm btn--ghost">Clear</button>
+          <button id="pauseLogBtn" class="btn btn--sm btn--outline">
+            <svg id="pauseIcon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            <span id="pauseLabel">Pause</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="log-terminal" id="logTerminal">
+        <div class="log-terminal__inner" id="logInner">
+          <!-- log lines injected here -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- WORKER DETAIL DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay">
+    <aside class="drawer" id="drawer">
+      <button class="drawer__close" id="drawerClose">✕</button>
+      <div class="drawer__content" id="drawerContent">
+        <!-- populated by JS -->
+      </div>
+    </aside>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
