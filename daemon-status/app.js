@@ -431,7 +431,7 @@ function openDrawer(id) {
           <div class="run-item">
             <div class="run-item__dot run-item__dot--${r.ok ? 'ok' : 'err'}"></div>
             <span class="run-item__time">${fmtRelTime(r.ts)}</span>
-            <span style="color:${r.ok ? 'var(--green)' : 'var(--red)';font-size:11px">${r.ok ? '✓ OK' : '✗ FAIL'}</span>
+            <span style="color:${r.ok ? 'var(--green)' : 'var(--red)'};font-size:11px">${r.ok ? '✓ OK' : '✗ FAIL'}</span>
             <span class="run-item__dur">${r.dur}</span>
           </div>
         `).join('')}
